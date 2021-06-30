@@ -1,32 +1,30 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 
- let voters ={
-   "v1":{
-     "mail":"blockbook1109@gmail.com",
-      "name":"pd"
-    },
-    "v2":{
-      "mail":"spktech606@gmail.com",
-       "name":"pd"
-     },
+let voters = {
+  v1: {
+    mail: "blockbook1109@gmail.com",
+    name: "pd",
+  },
+  v2: {
+    mail: "spktech606@gmail.com",
+    name: "pd",
+  },
 
-     "v3":{
-      "mail":"abcd@gmail.com",
-       "name":"pd"
-     },
+  v3: {
+    mail: "abcd@gmail.com",
+    name: "pd",
+  },
+};
 
- }
- 
- console.log(Object.keys(voters));
-
+console.log(Object.keys(voters));
 
 function VoterRegister() {
+  const [flag, setFlag] = useState(1);
+  const [OTP, setOTP] = useState();
 
-  const [flag, setFlag] = useState(1)
-  const [OTP, setOTP] = useState()
-
-  const [voterId, setVoterId] = useState([])
+  const [voterId, setVoterId] = useState([]);
+  const [ethAddress, setEthAddress] = useState("");
 
   function generateOTP() {
     var digits = "0123456789";
@@ -54,10 +52,9 @@ function VoterRegister() {
     e.preventDefault();
     console.log(voterId);
 
-    
     console.log(voters[voterId].mail);
     let userMail = voters[voterId].mail;
-    
+
     // emailjs
     //   .sendForm(
     //     "service_ze5a9tj",
@@ -73,45 +70,53 @@ function VoterRegister() {
       .send(
         "service_ze5a9tj",
         "template_qlyl0pq",
-        { "user-mail": `${userMail}`, "message": `${OTP}` },
+        { "user-mail": `${userMail}`, message: `${OTP}` },
         "user_Fw69jbPqNdDCyieMVNMR5"
       )
       .then((res) => {
         console.log(res);
       });
-    setFlag(0)
+    setFlag(0);
   }
 
-  function verifyOTP(){
-      var enteredOTP = document.getElementById("enteredOTP").value;
-      console.log(enteredOTP);
-      console.log(OTP);
-      if(OTP==enteredOTP){
-        console.log('xes');
-      }
-      else{
-        console.log('fo');
-      }
+  function verifyOTP() {
+    var enteredOTP = document.getElementById("enteredOTP").value;
+    console.log(enteredOTP);
+    console.log(OTP);
+    if (OTP == enteredOTP) {
+      console.log("xes");
+      localStorage.setItem(voterId, ethAddress);
+    } else {
+      console.log("fo");
+    }
   }
-
-  
-
-
 
   return flag ? (
     <div>
       <form onSubmit={sendMail}>
-        <input type="text" name="user-mail" onChange={(e)=>{setVoterId(e.target.value)}}></input>
-        <button id="register">Click</button>
+        <input
+          type="text"
+          onChange={(e) => {
+            setVoterId(e.target.value);
+          }}
+          placeholder="Voter ID"
+        ></input>
+        <input
+          type="text"
+          onChange={(e) => {
+            setEthAddress(e.target.value);
+          }}
+          placeholder="Eth Address"
+        ></input>
+
+        <button id="register">Register</button>
       </form>
     </div>
   ) : (
     <div>
-    
-    OTP
-    <input type="text" id="enteredOTP"></input>
-    <button onClick={verifyOTP}>verify</button>
-    
+      OTP
+      <input type="text" id="enteredOTP"></input>
+      <button onClick={verifyOTP}>verify</button>
     </div>
   );
 }

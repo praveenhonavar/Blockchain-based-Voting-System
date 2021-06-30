@@ -4,8 +4,9 @@ import getWeb3 from "./getWeb3";
 
 import "./App.css";
 
-
 import VoterRegister from "./components/VoterRegister";
+
+import AddVoter from "./components/AdminComponents/AddVoter";
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -57,7 +58,7 @@ class App extends Component {
     // }
     return (
       <div className="App">
-      <VoterRegister/>
+        <AddVoter />
       </div>
     );
   }
