@@ -1,0 +1,31 @@
+h2 {
+  margin: 0;
+}
+
+.add-canidate-field {
+ 
+  background-color: chocolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 50vh;
+}
+
+.add-canidate-field input {
+  width: 40em;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.add-canidate-field button {
+  width: 41.5em;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+

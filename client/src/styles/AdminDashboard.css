@@ -1,0 +1,7 @@
+.admin-dashboard{
+    background-color: #d9d9d9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+  }

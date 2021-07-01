@@ -1,12 +1,18 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
 
-import VoterRegister from "./components/VoterRegister";
 
 import AddVoter from "./components/AdminComponents/AddVoter";
+import HomePage from "./components/CommonComponents/HomePage";
+import AdminDashboard from "./components/AdminComponents/AdminDashboard";
+import UserDashboard from "./components/UserComponents/UserDashboard";
+import VoterRegister from "./components/UserComponents/VoterRegister";
+import AddCandidate from "./components/AdminComponents/AddCandidate";
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -58,7 +64,16 @@ class App extends Component {
     // }
     return (
       <div className="App">
-        <AddVoter />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomePage}></Route>
+            <Route path="/adminDashboard" component={AdminDashboard}></Route>
+            <Route path="/userDashboard" component={UserDashboard}></Route>
+            <Route path="/voterRegister" component={VoterRegister}></Route>
+            <Route path="/addVoter" component={AddVoter}></Route>
+            <Route path="/addCandidate" component={AddCandidate}></Route>
+          </Switch>
+        </Router>
       </div>
     );
   }

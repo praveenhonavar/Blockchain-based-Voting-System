@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import getWeb3 from "../../getWeb3";
-// import SimpleStorageContract from "../../contracts/SimpleStorage.json";
 import VotingContract from "../../contracts/Voting.json";
+
+import AdminSideBar from "./AdminSideBar";
+import "../../styles/AddVoter.css";
 
 let voters = {
   v1: {
@@ -30,65 +32,58 @@ console.log(voterIdKey);
 class AddVoter extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
-  componentDidMount = async () => {
-    try {
-      // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+  // componentDidMount = async () => {
+  //   try {
+  //     // Get network provider and web3 instance.
+  //     const web3 = await getWeb3();
 
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
+  //     // Use web3 to get the user's accounts.
+  //     const accounts = await web3.eth.getAccounts();
 
-      console.log(accounts);
+  //     console.log(accounts);
 
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = VotingContract.networks[networkId];
-      const instance = new web3.eth.Contract(
-        VotingContract.abi,
-        deployedNetwork && deployedNetwork.address
-      );
+  //     // Get the contract instance.
+  //     const networkId = await web3.eth.net.getId();
+  //     const deployedNetwork = VotingContract.networks[networkId];
+  //     const instance = new web3.eth.Contract(
+  //       VotingContract.abi,
+  //       deployedNetwork && deployedNetwork.address
+  //     );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      );
-      console.error(error);
-    }
-  };
+  //     // Set web3, accounts, and contract to the state, and then proceed with an
+  //     // example of interacting with the contract's methods.
+  //     this.setState({ web3, accounts, contract: instance }, this.runExample);
+  //   } catch (error) {
+  //     // Catch any errors for any of the above operations.
+  //     alert(
+  //       `Failed to load web3, accounts, or contract. Check console for details.`
+  //     );
+  //     console.error(error);
+  //   }
+  // };
 
   runExample = async () => {
-    const { accounts, contract } = this.state;
-
-    var addVoterBtn = document.getElementById("add-voter");
-    var ethAddress = document.getElementById("eth-address");
-
-    addVoterBtn.addEventListener("click", () => {
-      var ethAddressValue = ethAddress.value;
-      console.log("meee", ethAddressValue);
-
-      console.log(contract.methods);
-
-      contract.methods
-        .registerVoter(ethAddressValue)
-        .send({
-          from: accounts[0],
-        })
-        .then((res) => {
-          console.log(res);
-          console.log("added");
-        });
-    });
-
+    // const { accounts, contract } = this.state;
+    // var addVoterBtn = document.getElementById("add-voter");
+    // var ethAddress = document.getElementById("eth-address");
+    // addVoterBtn.addEventListener("click", () => {
+    //   var ethAddressValue = ethAddress.value;
+    //   console.log("meee", ethAddressValue);
+    //   // console.log(contract.methods);
+    //   contract.methods
+    //     .registerVoter(ethAddressValue)
+    //     .send({
+    //       from: accounts[0],
+    //     })
+    //     .then((res) => {
+    //       console.log(res);
+    //       console.log("added");
+    //     });
+    // });
     // Stores a given value, 5 by default.
     //   await contract.methods.set(5).send({ from: accounts[0] });
-
     // Get the value from the contract to prove it worked.
     //   const response = await contract.methods.get().call();
-
     // Update state with the result.
     //   this.setState({ storageValue: response });
   };
@@ -98,19 +93,20 @@ class AddVoter extends Component {
     //     return <div>Loading Web3, accounts, and contract...</div>;
     //   }
     return (
-      <div className="App">
+      <div className="validate-voter-page">
+        <AdminSideBar />
         <div className="pending-register">
-        <h4>pending-register</h4>
-          {
-            voterIdKey.map((val) => {
+          <h4>pending-register</h4>
+          {voterIdKey.map((val) => {
             console.log("regVot", localStorage.getItem(val));
-            return (<h4>{localStorage.getItem(val)}</h4>);
-          })
-         }
+            return <h4>{localStorage.getItem(val)}</h4>;
+          })}
         </div>
 
-        <input type="text" id="eth-address"></input>
-        <button id="add-voter">Add Voter</button>
+        <div className="validate-vote-form">
+          <input type="text" id="eth-address-input"></input>
+          <button id="add-voter">Add Voter</button>
+        </div>
       </div>
     );
   }
