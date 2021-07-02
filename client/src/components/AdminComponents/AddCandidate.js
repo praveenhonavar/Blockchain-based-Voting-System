@@ -6,6 +6,16 @@ import VotingContract from "../../contracts/Voting.json";
 import AdminSideBar from "./AdminSideBar";
 import "../../styles/AddCandidate.css";
 
+
+
+const pd = () => {
+  console.log("oooooooooooooooooooooooo");
+  if (!window.location.hash) {
+    window.location = window.location + "#loaded";
+    window.location.reload();
+  }
+};
+
 class AddCandidate extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
@@ -50,10 +60,14 @@ class AddCandidate extends Component {
     var addCandidateBtn = document.getElementById("add-candidate-btn");
 
     addCandidateBtn.addEventListener("click",()=>{
+      
         var name = nameInput.value;
         var party = partyInput.value;
         var age = ageInput.value;
         var experince = experinceInput.value;
+
+                  // emit AddedCandidate(name, party, experince, age, voteCount);
+
 
         contract.methods.addCandidate(name,party,experince,age,0).send({from:accounts[0]}).then((res)=>{
             console.log(res);
@@ -86,16 +100,27 @@ class AddCandidate extends Component {
   };
 
   render() {
+
+    if (!this.state.web3) {
+      pd();
+
+      console.log("pkfpefpef");
+      // window.location.reload()
+
+      // return <div>Loading Web3, accounts, and contract...</div>;
+    }
+
+
     return (
       <div className="add-field-form">
         <AdminSideBar />
-
+        
         <div className="add-canidate-field">
           <h2>Add Candidate</h2>
-          <input type="text" id="name-input"></input>
-          <input type="text" id="party-input"></input>
-          <input type="text" id="experince-input"></input>
-          <input type="text" id="age-input"></input>
+          <input type="text" id="name-input" placeholder="Enter Candidate Name"></input>
+          <input type="text" id="party-input"  placeholder="Enter Party Name"></input>
+          <input type="text" id="experince-input" placeholder="Enter Candidate Experience"></input>
+          <input type="text" id="age-input" placeholder="Enter Candidate Age"></input>
           <button id="add-candidate-btn">Add Candidate</button>
         </div>
       </div>

@@ -2,14 +2,22 @@ h2 {
   margin: 0;
 }
 
+.add-field-form{
+  background-color: #d9d9d9;
+  height: 100vh;
+}
+
 .add-canidate-field {
- 
-  background-color: chocolate;
+  position: absolute;
+  /* background-color: chocolate; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   height: 50vh;
+  width: 50vw;
+  margin-left:25em;
+  margin-top: 6em;
 }
 
 .add-canidate-field input {
@@ -18,14 +26,34 @@ h2 {
   border-radius: 5px;
   border: none;
   outline: none;
+  font-family: "Montserrat", sans-serif;
 }
 
-.add-canidate-field button {
+/* .add-canidate-field button {
   width: 41.5em;
   padding: 10px;
   border-radius: 5px;
   border: none;
   outline: none;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+} */
+
+#add-candidate-btn {
+  /* background: linear-gradient(#0f2027, #203a43, #2c5364);
+  color: #d9d9d9;
+  font-weight: 900; */
+  width: 41.5em;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
 }
 
-
+#add-candidate-btn:hover {
+  background: linear-gradient(#0f2027, #203a43, #2c5364);
+  color: #d9d9d9;
+  font-weight: 900;
+}

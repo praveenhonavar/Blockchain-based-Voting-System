@@ -13,6 +13,8 @@ import AdminDashboard from "./components/AdminComponents/AdminDashboard";
 import UserDashboard from "./components/UserComponents/UserDashboard";
 import VoterRegister from "./components/UserComponents/VoterRegister";
 import AddCandidate from "./components/AdminComponents/AddCandidate";
+import CandidateDetails from "./components/AdminComponents/CandidateDetails";
+
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -58,6 +60,9 @@ class App extends Component {
   //   this.setState({ storageValue: response });
   // };
 
+  // <Route path="/candidateDetails" component={CandidateDetails}></Route>
+
+
   render() {
     // if (!this.state.web3) {
     //   return <div>Loading Web3, accounts, and contract...</div>;
@@ -72,6 +77,8 @@ class App extends Component {
             <Route path="/voterRegister" component={VoterRegister}></Route>
             <Route path="/addVoter" component={AddVoter}></Route>
             <Route path="/addCandidate" component={AddCandidate}></Route>
+            <Route path="/candidateDetails" component={CandidateDetails}></Route>
+
           </Switch>
         </Router>
       </div>
