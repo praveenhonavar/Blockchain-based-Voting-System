@@ -6,7 +6,6 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="home-page-form">
-      <img src="../../../assets/vote-1.png"></img>
         <Link to="/userDashboard">
           <h1>Login as User</h1>
         </Link>

@@ -32,54 +32,54 @@ console.log(voterIdKey);
 class AddVoter extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
-  // componentDidMount = async () => {
-  //   try {
-  //     // Get network provider and web3 instance.
-  //     const web3 = await getWeb3();
+  componentDidMount = async () => {
+    try {
+      // Get network provider and web3 instance.
+      const web3 = await getWeb3();
 
-  //     // Use web3 to get the user's accounts.
-  //     const accounts = await web3.eth.getAccounts();
+      // Use web3 to get the user's accounts.
+      const accounts = await web3.eth.getAccounts();
 
-  //     console.log(accounts);
+      console.log(accounts);
 
-  //     // Get the contract instance.
-  //     const networkId = await web3.eth.net.getId();
-  //     const deployedNetwork = VotingContract.networks[networkId];
-  //     const instance = new web3.eth.Contract(
-  //       VotingContract.abi,
-  //       deployedNetwork && deployedNetwork.address
-  //     );
+      // Get the contract instance.
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = VotingContract.networks[networkId];
+      const instance = new web3.eth.Contract(
+        VotingContract.abi,
+        deployedNetwork && deployedNetwork.address
+      );
 
-  //     // Set web3, accounts, and contract to the state, and then proceed with an
-  //     // example of interacting with the contract's methods.
-  //     this.setState({ web3, accounts, contract: instance }, this.runExample);
-  //   } catch (error) {
-  //     // Catch any errors for any of the above operations.
-  //     alert(
-  //       `Failed to load web3, accounts, or contract. Check console for details.`
-  //     );
-  //     console.error(error);
-  //   }
-  // };
+      // Set web3, accounts, and contract to the state, and then proceed with an
+      // example of interacting with the contract's methods.
+      this.setState({ web3, accounts, contract: instance }, this.runExample);
+    } catch (error) {
+      // Catch any errors for any of the above operations.
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
+      );
+      console.error(error);
+    }
+  };
 
   runExample = async () => {
-    // const { accounts, contract } = this.state;
-    // var addVoterBtn = document.getElementById("add-voter");
-    // var ethAddress = document.getElementById("eth-address");
-    // addVoterBtn.addEventListener("click", () => {
-    //   var ethAddressValue = ethAddress.value;
-    //   console.log("meee", ethAddressValue);
-    //   // console.log(contract.methods);
-    //   contract.methods
-    //     .registerVoter(ethAddressValue)
-    //     .send({
-    //       from: accounts[0],
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       console.log("added");
-    //     });
-    // });
+    const { accounts, contract } = this.state;
+    var addVoterBtn = document.getElementById("add-voter");
+    var ethAddress = document.getElementById("eth-address-input");
+    addVoterBtn.addEventListener("click", () => {
+      var ethAddressValue = ethAddress.value;
+      console.log("meee", ethAddressValue);
+      // console.log(contract.methods);
+      contract.methods
+        .registerVoter(ethAddressValue)
+        .send({
+          from: accounts[0],
+        })
+        .then((res) => {
+          console.log(res);
+          console.log("added");
+        });
+    });
     // Stores a given value, 5 by default.
     //   await contract.methods.set(5).send({ from: accounts[0] });
     // Get the value from the contract to prove it worked.

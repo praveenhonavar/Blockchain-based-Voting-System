@@ -13,6 +13,10 @@ const pd = () => {
   }
 };
 
+var candId, vc;
+
+var dict={}
+
 class CandidateDetails extends Component {
   state = {
     storageValue: 0,
@@ -57,6 +61,38 @@ class CandidateDetails extends Component {
     var transactions = document.getElementById("Transactions");
 
     contract
+      .getPastEvents("Voted", {
+        fromBlock: 0,
+        toBlock: "latest",
+      })
+      .then((pd) => {
+        console.log("pdddddddddddd", pd);
+        pd.map((res)=>{
+          candId = res.returnValues.candidateId;
+            vc =   res.returnValues.voteCount;
+            dict[candId] = vc
+        })
+      
+
+  
+        console.log("ddd",dict);
+        // var size = pd.length;
+        // console.log(size);
+
+        // for (var i = size - 1; i >= 0; i--) {
+        //   // console.log(val[i].returnValues);
+
+        //   // var name = kp[i].returnValues.name;
+        //   // var age = kp[i].returnValues.age;
+        //   // var party = kp[i].returnValues.party;
+        //   // var experince = kp[i].returnValues.experince;
+        //   var voteCount = pd[i].returnValues.voteCount;
+        //   noVotes[i] = voteCount;
+
+        // }
+      });
+
+    contract
       .getPastEvents("AddedCandidate", {
         fromBlock: 0,
         toBlock: "latest",
@@ -69,12 +105,17 @@ class CandidateDetails extends Component {
 
         for (var i = size - 1; i >= 0; i--) {
           // console.log(val[i].returnValues);
-
+          var cid = kp[i].returnValues.id;
           var name = kp[i].returnValues.name;
           var age = kp[i].returnValues.age;
           var party = kp[i].returnValues.party;
           var experince = kp[i].returnValues.experince;
-          var voteCount = kp[i].returnValues.voteCount;
+
+          var voteCount = dict[cid]
+      
+
+
+          // var voteCount = noVotes[i];
 
           transactions.innerHTML += `<tbody>
                 <tr>

@@ -6,7 +6,6 @@ import getWeb3 from "./getWeb3";
 
 import "./App.css";
 
-
 import AddVoter from "./components/AdminComponents/AddVoter";
 import HomePage from "./components/CommonComponents/HomePage";
 import AdminDashboard from "./components/AdminComponents/AdminDashboard";
@@ -14,7 +13,8 @@ import UserDashboard from "./components/UserComponents/UserDashboard";
 import VoterRegister from "./components/UserComponents/VoterRegister";
 import AddCandidate from "./components/AdminComponents/AddCandidate";
 import CandidateDetails from "./components/AdminComponents/CandidateDetails";
-
+import CastVote from "./components/UserComponents/CastVote";
+import ChangePhase from "./components/AdminComponents/ChangePhase";
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -62,7 +62,6 @@ class App extends Component {
 
   // <Route path="/candidateDetails" component={CandidateDetails}></Route>
 
-
   render() {
     // if (!this.state.web3) {
     //   return <div>Loading Web3, accounts, and contract...</div>;
@@ -78,7 +77,8 @@ class App extends Component {
             <Route path="/addVoter" component={AddVoter}></Route>
             <Route path="/addCandidate" component={AddCandidate}></Route>
             <Route path="/candidateDetails" component={CandidateDetails}></Route>
-
+            <Route path="/castVote" component={CastVote}></Route>
+            <Route path="/changePhase" component={ChangePhase}></Route>
           </Switch>
         </Router>
       </div>
