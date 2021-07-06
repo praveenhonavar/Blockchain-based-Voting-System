@@ -1,37 +1,38 @@
-.validate-voter-page{
-    background-color: #d9d9d9;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: "Montserrat", sans-serif;
+.validate-voter-page {
+  background-color: #d9d9d9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
 }
 
-.validate-vote-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.validate-vote-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #eth-address-input {
-    margin: 15px;
-    width: 25em;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-family: "Montserrat", sans-serif;
+  margin: 15px;
+  width: 25em;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
 }
 
-#add-voter{
-    padding: 10px;
+#add-voter {
+  padding: 10px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  width: 26.5em;
+  width: 25.5em;
   font-family: "Montserrat", sans-serif;
 }
 
 #add-voter:hover {
-    background-color: aqua;
-  }
+ color: white;
+  background: linear-gradient(#0f2027, #203a43, #2c5364);
+}

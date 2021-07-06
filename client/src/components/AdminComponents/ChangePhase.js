@@ -4,15 +4,18 @@ import getWeb3 from "../../getWeb3";
 import VotingContract from "../../contracts/Voting.json";
 
 import AdminSideBar from "./AdminSideBar";
-import "../../styles/AddCandidate.css";
+import "../../styles/ChangePhase.css";
 
 const pd = () => {
-  console.log("oooooooooooooooooooooooo");
   if (!window.location.hash) {
+    console.log("oooooooooooooooooooooooo");
+
     window.location = window.location + "#loaded";
     window.location.reload();
   }
 };
+
+var phase;
 
 class ChangePhase extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -50,18 +53,100 @@ class ChangePhase extends Component {
   runExample = async () => {
     const { accounts, contract } = this.state;
 
+    var phaseField = document.getElementById("phase-field");
     var changePhaseBtn = document.getElementById("change-phase-btn");
+    console.log(contract.methods);
 
-    changePhaseBtn.addEventListener('click',()=>{
-        contract.methods.changePhase(1).send({
-            from:accounts[0]
-        }).then((res)=>{
-            console.log(res);
+    contract
+      .getPastEvents("PhaseChanged", {
+        fromBlock: "latest",
+        toBlock: "latest",
+      })
+      .then((val, err) => {
+        console.log("PPDDD", val);
+        if (val == "") {
+          console.log("fokokok");
+          phase=0
+        } else {
+          phaseField.innerHTML = val[0].returnValues.phase;
+          phase = val[0].returnValues.phaseId;
+          console.log("iddddddddddd", phase);
+        }
+        console.log("iddddddddddd", phase);
+      });
+
+ 
+
+    changePhaseBtn.addEventListener("click", () => {
+      contract
+        .getPastEvents("PhaseChanged", {
+          fromBlock: "latest",
+          toBlock: "latest",
         })
-    })
+        .then((val, err) => {
+          if (val == "") {
+            console.log("PPDDD", val);
 
+            contract.methods
+              .changePhase(0)
+              .send({
+                from: accounts[0],
+              })
+              .then((res) => {
+                // phase = 0;
+                console.log("Register phase", res);
+                // pd();
 
+                phaseField.innerHTML = `<h1>Register Phase</h1>`
+              });
+          } else {
+            phaseField.innerHTML = val[0].returnValues.phase;
+            phase = val[0].returnValues.phaseId;
 
+            console.log("iddddddddddd", phase);
+            if (phase == 0) {
+              contract.methods
+                .changePhase(1)
+                .send({
+                  from: accounts[0],
+                })
+                .then((res) => {
+                  // phase = 1;
+                  console.log("Vote phase", res);
+                  // pd();
+
+                  phaseField.innerHTML = `<h1>Voting Phase</h1>`
+                });
+            } else if (phase == 1) {
+              contract.methods
+                .changePhase(2)
+                .send({
+                  from: accounts[0],
+                })
+                .then((res) => {
+                  // phase = 2;
+                  console.log("Results phase", res);
+                  // pd();
+
+                  phaseField.innerHTML = `<h1>Results Phase</h1>`
+                });
+            } else {
+              contract.methods
+                .changePhase(0)
+                .send({
+                  from: accounts[0],
+                })
+                .then((res) => {
+                  // phase = 0;
+                  console.log("Register phase", res);
+                  // pd();
+
+                  phaseField.innerHTML = `<h1>Register Phase</h1>`
+                });
+            }
+          }
+        });
+    });
   };
 
   render() {
@@ -77,7 +162,11 @@ class ChangePhase extends Component {
     return (
       <div className="add-field-form">
         <AdminSideBar />
+        <h1 id="phase-field">
+
+        </h1>
         <button id="change-phase-btn">Change</button>
+
       </div>
     );
   }

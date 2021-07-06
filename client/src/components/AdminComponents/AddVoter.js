@@ -5,6 +5,8 @@ import VotingContract from "../../contracts/Voting.json";
 import AdminSideBar from "./AdminSideBar";
 import "../../styles/AddVoter.css";
 
+import Swal from "sweetalert2/dist/sweetalert2.js";
+
 let voters = {
   v1: {
     mail: "blockbook1109@gmail.com",
@@ -23,7 +25,17 @@ let voters = {
 
 let voterIdKey = Object.keys(voters);
 
+var ch;
+
 console.log(voterIdKey);
+
+const pd = () => {
+  console.log("oooooooooooooooooooooooo");
+  if (!window.location.hash) {
+    window.location = window.location + "#loaded";
+    window.location.reload();
+  }
+};
 
 // voterIdKey.map((val) => {
 //     console.log("regVot", localStorage.getItem(val));
@@ -66,6 +78,7 @@ class AddVoter extends Component {
     const { accounts, contract } = this.state;
     var addVoterBtn = document.getElementById("add-voter");
     var ethAddress = document.getElementById("eth-address-input");
+
     addVoterBtn.addEventListener("click", () => {
       var ethAddressValue = ethAddress.value;
       console.log("meee", ethAddressValue);
@@ -78,6 +91,19 @@ class AddVoter extends Component {
         .then((res) => {
           console.log(res);
           console.log("added");
+
+          voterIdKey.map((key)=>{
+            if(localStorage.getItem(key)==ethAddressValue){
+              localStorage.removeItem(key)
+            }
+          })
+
+          Swal.fire({
+            icon: "success",
+            title: "Validation Done",
+            showConfirmButton: false,
+            timer: 4000,
+          });
         });
     });
     // Stores a given value, 5 by default.
@@ -89,14 +115,16 @@ class AddVoter extends Component {
   };
 
   render() {
-    //   if (!this.state.web3) {
-    //     return <div>Loading Web3, accounts, and contract...</div>;
-    //   }
+    if (!this.state.web3) {
+      pd();
+
+      console.log("pkfpefpef");
+    }
     return (
       <div className="validate-voter-page">
         <AdminSideBar />
         <div className="pending-register">
-          <h4>pending-register</h4>
+          <h2>Pending Registration</h2>
           {voterIdKey.map((val) => {
             console.log("regVot", localStorage.getItem(val));
             return <h4>{localStorage.getItem(val)}</h4>;
@@ -104,7 +132,7 @@ class AddVoter extends Component {
         </div>
 
         <div className="validate-vote-form">
-          <input type="text" id="eth-address-input"></input>
+          <input type="text" id="eth-address-input" placeholder="Ethereum Address"></input>
           <button id="add-voter">Add Voter</button>
         </div>
       </div>

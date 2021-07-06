@@ -1,4 +1,4 @@
-import React,{ Component } from "react";
+import React, { Component } from "react";
 
 import getWeb3 from "../../getWeb3";
 import VotingContract from "../../contracts/Voting.json";
@@ -6,7 +6,7 @@ import VotingContract from "../../contracts/Voting.json";
 import AdminSideBar from "./AdminSideBar";
 import "../../styles/AddCandidate.css";
 
-
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const pd = () => {
   console.log("oooooooooooooooooooooooo");
@@ -53,74 +53,66 @@ class AddCandidate extends Component {
     const { accounts, contract } = this.state;
 
     var nameInput = document.getElementById("name-input");
-    var partyInput  = document.getElementById("party-input");
-    var ageInput  = document.getElementById("age-input");
-    var experinceInput  = document.getElementById("experince-input");
+    var partyInput = document.getElementById("party-input");
+    var ageInput = document.getElementById("age-input");
+    var experinceInput = document.getElementById("experince-input");
 
     var addCandidateBtn = document.getElementById("add-candidate-btn");
 
-    addCandidateBtn.addEventListener("click",()=>{
-      
-        var name = nameInput.value;
-        var party = partyInput.value;
-        var age = ageInput.value;
-        var experince = experinceInput.value;
+    addCandidateBtn.addEventListener("click", () => {
+      var name = nameInput.value;
+      var party = partyInput.value;
+      var age = ageInput.value;
+      var experince = experinceInput.value;
 
-                  // emit AddedCandidate(name, party, experince, age, voteCount);
-
-
-        contract.methods.addCandidate(name,party,experince,age,0).send({from:accounts[0]}).then((res)=>{
-            console.log(res);
-        })
-
-    }
-    )
-
-
-    // addVoterBtn.addEventListener("click", () => {
-    //   var ethAddressValue = ethAddress.value;
-    //   console.log("meee", ethAddressValue);
-    //   // console.log(contract.methods);
-    //   contract.methods
-    //     .registerVoter(ethAddressValue)
-    //     .send({
-    //       from: accounts[0],
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       console.log("added");
-    //     });
-    // });
-    // Stores a given value, 5 by default.
-    //   await contract.methods.set(5).send({ from: accounts[0] });
-    // Get the value from the contract to prove it worked.
-    //   const response = await contract.methods.get().call();
-    // Update state with the result.
-    //   this.setState({ storageValue: response });
+      contract.methods
+        .addCandidate(name, party, experince, age, 0)
+        .send({ from: accounts[0] })
+        .then((res) => {
+          console.log(res);
+          Swal.fire({
+            icon: "success",
+            title: "Candidate Added Successfully !!",
+            showConfirmButton: false,
+            timer: 4000,
+          });
+        });
+    });
   };
 
   render() {
-
     if (!this.state.web3) {
       pd();
 
       console.log("pkfpefpef");
-      // window.location.reload()
-
-      // return <div>Loading Web3, accounts, and contract...</div>;
     }
-
 
     return (
       <div className="add-field-form">
         <AdminSideBar />
-        
+
         <div className="add-canidate-field">
-          <h2>Add Candidate</h2>
-          <input type="text" id="name-input" placeholder="Enter Candidate Name"></input>
-          <input type="text" id="party-input"  placeholder="Enter Party Name"></input>
-          <input type="text" id="experince-input" placeholder="Enter Candidate Experience"></input>
-          <input type="text" id="age-input" placeholder="Enter Candidate Age"></input>
+          <h1>Add Candidate</h1>
+          <input
+            type="text"
+            id="name-input"
+            placeholder="Enter Candidate Name"
+          ></input>
+          <input
+            type="text"
+            id="party-input"
+            placeholder="Enter Party Name"
+          ></input>
+          <input
+            type="text"
+            id="experince-input"
+            placeholder="Enter Candidate Experience"
+          ></input>
+          <input
+            type="text"
+            id="age-input"
+            placeholder="Enter Candidate Age"
+          ></input>
           <button id="add-candidate-btn">Add Candidate</button>
         </div>
       </div>

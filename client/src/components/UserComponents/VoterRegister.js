@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
 import UserSideBar from "../UserComponents/UserSideBar";
 import "../../styles/VoterRegister.css";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 let voters = {
   v1: {
@@ -43,51 +44,21 @@ function VoterRegister() {
     setOTP(otp);
   }, []);
 
-  // function generateOTP() {
-  //   var digits = "0123456789";
-
-  //   var otpLength = 4;
-
-  //   var otp = "";
-
-  //   for (let i = 1; i <= otpLength; i++) {
-  //     var index = Math.floor(Math.random() * digits.length);
-
-  //     otp = otp + digits[index];
-  //   }
-  //   console.log(otp);
-  //   setOTP(otp);
-
-  //   // return otp;
-  // }
-
-  // window.onload = () => {
-  //   var result = generateOTP();
-  //   setOTP(result);
-  //   console.log(OTP);
-  // };
-
   function sendMail(e) {
     e.preventDefault();
+    Swal.fire({
+      title: "OTP sent to your Registered Mail",
+      showConfirmButton: false,
+      timer: 2000,
+    });
 
     // generateOTP();
-    console.log("jijijjijijij",OTP);
+    console.log("jijijjijijij", OTP);
 
     console.log(voterId);
 
     console.log(voters[voterId].mail);
     let userMail = voters[voterId].mail;
-
-    // emailjs
-    //   .sendForm(
-    //     "service_ze5a9tj",
-    //     "template_qlyl0pq",
-    //     e.target,
-    //     "user_Fw69jbPqNdDCyieMVNMR5"
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
 
     emailjs
       .send(
@@ -109,7 +80,20 @@ function VoterRegister() {
     if (OTP == enteredOTP) {
       console.log("xes");
       localStorage.setItem(voterId, ethAddress);
+      // localStorage.setItem(ethAddress,ethAddress);
+      Swal.fire({
+        icon: "success",
+        title: "OTP verification Successfully",
+        showConfirmButton: false,
+        timer: 4000,
+      });
     } else {
+      Swal.fire({
+        icon: "error",
+        title: "OTP verification Failed",
+        showConfirmButton: false,
+        timer: 2000,
+      });
       console.log("fo");
     }
   }
@@ -119,7 +103,7 @@ function VoterRegister() {
       <UserSideBar />
 
       <div className="voter-register-form">
-        <h2>Register Yourself</h2>
+        <h1>Register Yourself</h1>
         <form onSubmit={sendMail}>
           <input
             type="text"

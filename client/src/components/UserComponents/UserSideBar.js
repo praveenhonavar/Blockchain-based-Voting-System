@@ -26,15 +26,13 @@ function UserSideBar() {
           </div>
         </Link>
 
-        <div className="nav-items">
-          <i class="fas fa-poll fa-1x"></i>
-          <h4>Results</h4>
-        </div>
+        <Link to="/resultDisplay">
+          <div className="nav-items">
+            <i class="fas fa-poll fa-1x"></i>
+            <h4>Results</h4>
+          </div>
+        </Link>
 
-        <div className="nav-items">
-          <i class="fas fa-info fa-1x"></i>
-          <h4>Candidate Details</h4>
-        </div>
 
         <div className="nav-items">
           <i class="fas fa-sign-out-alt fa-1x"></i>

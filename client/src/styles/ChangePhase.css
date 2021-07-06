@@ -1,0 +1,15 @@
+#phase-field{
+    position: absolute;
+    margin-left: 16em;
+    margin-top: 2em;
+}
+
+#change-phase-btn{
+    margin-top: 10em;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    width: 10em;
+    border: none;
+}

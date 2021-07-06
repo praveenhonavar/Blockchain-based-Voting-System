@@ -35,6 +35,12 @@ contract Voting {
         uint candidateId
     );
 
+    event PhaseChanged(
+        string phase,
+        uint phaseId
+
+    );
+
     mapping(uint256 => Candidate) CandidateMapping;
 
     mapping(address => Voter) voterMapping;
@@ -65,13 +71,28 @@ contract Voting {
     }
     
     function changePhase(uint pId) public {
+        if(pId==1){
         phaseId=pId;
+        emit PhaseChanged("Voting Phase",phaseId);
+        }
+        else if(pId==2){
+            phaseId=pId;
+            emit PhaseChanged("Result Phase",phaseId);
+        }
+        else{
+            phaseId=pId;
+            emit PhaseChanged("Registeration Phase",phaseId);
+        } 
+    }
+
+    function getPhaseId() public view returns (uint){
+        return phaseId;
     }
     
-    function castVote(uint cid) public{
+    function castVote(uint cid, uint pid) public{
         // require(voterMapping[msg.sender].registered);
         // require(cid<=candidateId && cid>=0);
-        // require(phaseId==1);
+        require(pid==1);
         CandidateMapping[cid].voteCount+=1;
 
         emit Voted(CandidateMapping[cid].voteCount,msg.sender,cid);

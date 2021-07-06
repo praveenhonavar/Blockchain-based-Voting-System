@@ -6,6 +6,8 @@ import VotingContract from "../../contracts/Voting.json";
 import UserSideBar from "./UserSideBar";
 import "../../styles/CastVote.css";
 
+import Swal from "sweetalert2/dist/sweetalert2.js";
+
 const pd = () => {
   console.log("oooooooooooooooooooooooo");
   if (!window.location.hash) {
@@ -15,6 +17,9 @@ const pd = () => {
 };
 
 var name, age, party, experince;
+
+var pid;
+// var phase=-1;
 
 var cName = [];
 var cAge = [];
@@ -104,14 +109,16 @@ class CandidateDetails extends Component {
       var candExperience = cExprience[cid - 1];
 
       console.log(cName[cid - 1]);
+      // <img src="../../../assets/candidate.jpg" alt="User image" class="card__image" />
 
-      showCandidate.innerHTML =
-      `<main class="container">
+
+      showCandidate.innerHTML = `<main class="container">
       <div class="card">
-        <img src="https://res.cloudinary.com/alexandracaulea/image/upload/v1582179610/user_fckc9f.jpg" alt="User image" class="card__image" />
+
+
         <div class="card__text">
           <h2>${candName}</h2>
-          <p>I enjoy drinking a cup of coffee every day</p>
+          
         </div>
         <ul class="card__info">
           <li>
@@ -131,60 +138,39 @@ class CandidateDetails extends Component {
           <button id="vote-btn" class="card__action__button card__action--follow">Vote</button>
         </div>
       </div>
-    </main>`
+    </main>`;
 
-
-
-      // showCandidate.innerHTML = `
-
-      // <h1>${cid}</h1><button id="vote-btn">Vote</button>`;
-
-      // showCandidate.innerHTML = `<div className="card">
-      // <img
-      //   src="https://res.cloudinary.com/alexandracaulea/image/upload/v1582179610/user_fckc9f.jpg"
-      //   alt="User image"
-      //   class="card__image"
-      // />
-      // <div class="card__text">
-      //   <h2>${candName}</h2>
-       
-      // </div>
-      // <ul class="card__info">
-      //   <li>
-      //     <span class="card__info__stats">${candAge}</span>
-      //     <span>age</span>
-      //   </li>
-      //   <li>
-      //     <span class="card__info__stats">${candParty}</span>
-      //     <span>Party</span>
-      //   </li>
-      //   <li>
-      //     <span class="card__info__stats">${candExperience}</span>
-      //     <span>experience</span>
-      //   </li>
-      // </ul>
-      
-      // <div class="card__action">
-      //   <button  id="vote-btn"class="card__action__button card__action--follow">
-      //     Vote
-      //   </button>
-      //   <button class="card__action__button card__action--message">
-      //     message
-      //   </button>
-      // </div>
-      // </div>`;
+    
 
       var btns = document.getElementById("vote-btn");
       console.log(btns);
+
       btns.addEventListener("click", () => {
-        console.log("innnnn", cid);
         contract.methods
-          .castVote(cid)
-          .send({
-            from: accounts[0],
-          })
+          .getPhaseId()
+          .call()
           .then((res) => {
-            console.log("donee", res);
+            console.log(res);
+            pid = res;
+            console.log("iddddddddddd", pid);
+
+            console.log("innnnn", pid);
+
+            contract.methods
+              .castVote(cid, pid)
+              .send({
+                from: accounts[0],
+              })
+              .then((res) => {
+                Swal.fire({
+                  icon: "success",
+                  title: "Voted Successfully",
+                  showConfirmButton: false,
+                  timer: 4000,
+                });
+
+                console.log("donee", res);
+              });
           });
       });
     });
@@ -197,6 +183,7 @@ class CandidateDetails extends Component {
       pd();
 
       console.log("pkfpefpef");
+      
       // window.location.reload()
 
       // return <div>Loading Web3, accounts, and contract...</div>;
@@ -204,8 +191,8 @@ class CandidateDetails extends Component {
 
     return (
       <div className="cast-vote-page">
+      
         <UserSideBar />
-
         <h1>Cast Vote</h1>
 
         <select id="candidate-select-tab">

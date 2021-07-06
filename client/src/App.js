@@ -15,6 +15,7 @@ import AddCandidate from "./components/AdminComponents/AddCandidate";
 import CandidateDetails from "./components/AdminComponents/CandidateDetails";
 import CastVote from "./components/UserComponents/CastVote";
 import ChangePhase from "./components/AdminComponents/ChangePhase";
+import ResultDisplay from "./components/UserComponents/ResultDisplay";
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -79,6 +80,7 @@ class App extends Component {
             <Route path="/candidateDetails" component={CandidateDetails}></Route>
             <Route path="/castVote" component={CastVote}></Route>
             <Route path="/changePhase" component={ChangePhase}></Route>
+            <Route path="/resultDisplay" component={ResultDisplay}></Route>
           </Switch>
         </Router>
       </div>
