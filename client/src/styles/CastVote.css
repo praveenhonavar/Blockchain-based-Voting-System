@@ -52,7 +52,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.container {
+.cand-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   justify-content: center;
@@ -64,6 +64,7 @@ body {
 .card {
   padding: 1em;
   border-radius: 0.8em;
+  /* background-color: #d9d9d9; */
   background-color: #fefefe;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),

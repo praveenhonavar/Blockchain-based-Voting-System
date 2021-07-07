@@ -64,9 +64,8 @@ class ResultDisplay extends Component {
       .getPhaseId()
       .call()
       .then((val) => {
-        console.log("rererererer",val);
+        console.log("rererererer", val);
         phase = val;
-        
       });
 
     contract
@@ -109,38 +108,47 @@ class ResultDisplay extends Component {
           if (voteCount == undefined) {
             voteCount = 0;
           }
+          console.log("roooooooooooo",phase);
 
           // var voteCount = noVotes[i];
+          if (phase == '2') {
+            console.log("kokokfokeoko");
+            transactions.innerHTML += `<tbody>
+            <tr>
+              <td data-column="First Name">${name}</td>
+              <td data-column="Twitter">${party}</td>
+              <td data-column="Twitter">${experince}</td>
+              <td data-column="Last Name">${age}</td>
+              <td data-column="Job Title">${voteCount}</td>
+            </tr>   
+          </tbody>`;
+          }
+          else{
+            transactions.innerHTML = `<h2>Wait for the Result Phase 🕝</h2>`
+          }
 
-          transactions.innerHTML += `<tbody>
-                <tr>
-                  <td data-column="First Name">${name}</td>
-                  <td data-column="Twitter">${party}</td>
-                  <td data-column="Twitter">${experince}</td>
-                  <td data-column="Last Name">${age}</td>
-                  <td data-column="Job Title">${voteCount}</td>
-                </tr>   
-              </tbody>`;
-
-          console.log("Name -->", name);
-          console.log("age-->", age);
-          console.log("party-->", party);
+          // console.log("Name -->", name);
+          // console.log("age-->", age);
+          // console.log("party-->", party);
           console.log("-------------------------------------------");
         }
       });
   };
 
   render() {
+
     if (!this.state.web3) {
       pd();
       console.log("pkfpefpef");
     }
 
     return (
+     
       <div className="validate-voter-page">
+    
         <AdminSideBar />
-        <h1>Candidate Details</h1>
-       
+        <h1 className="cand-details">Candidate Details</h1>
+
           <table id="Transactions">
             <thead>
               <tr>
@@ -152,7 +160,7 @@ class ResultDisplay extends Component {
               </tr>
             </thead>
           </table>
-       
+        
       </div>
     );
   }

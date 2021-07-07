@@ -16,6 +16,7 @@ import CandidateDetails from "./components/AdminComponents/CandidateDetails";
 import CastVote from "./components/UserComponents/CastVote";
 import ChangePhase from "./components/AdminComponents/ChangePhase";
 import ResultDisplay from "./components/UserComponents/ResultDisplay";
+import SignUp from "./components/UserComponents/SignUp";
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -81,6 +82,8 @@ class App extends Component {
             <Route path="/castVote" component={CastVote}></Route>
             <Route path="/changePhase" component={ChangePhase}></Route>
             <Route path="/resultDisplay" component={ResultDisplay}></Route>
+            <Route path="/signUp" component={SignUp}></Route>
+
           </Switch>
         </Router>
       </div>

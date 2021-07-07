@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="home-page-form">
-        <Link to="/userDashboard">
+        <Link to="/SignUp">
           <h1>Login as User</h1>
         </Link>
 

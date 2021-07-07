@@ -19,6 +19,7 @@ const pd = () => {
 var name, age, party, experince;
 
 var pid;
+var phase;
 // var phase=-1;
 
 var cName = [];
@@ -71,33 +72,46 @@ class CandidateDetails extends Component {
     var candidateSelect = document.getElementById("candidate-select-tab");
     var showCandidate = document.getElementById("show-candidate");
 
-    contract
-      .getPastEvents("AddedCandidate", {
-        fromBlock: 0,
-        toBlock: "latest",
-      })
-      .then((res) => {
-        res.map((val) => {
-          console.log("koooooooooo", val);
+    contract.methods
+      .getPhaseId()
+      .call()
+      .then((val) => {
+        console.log("rererererer", val);
+        phase = val;
+        if (phase == "1") {
+          contract
+            .getPastEvents("AddedCandidate", {
+              fromBlock: 0,
+              toBlock: "latest",
+            })
+            .then((res) => {
+              res.map((val) => {
+                console.log("koooooooooo", val);
 
-          var candidateId = val.returnValues.id;
-          name = val.returnValues.name;
-          age = val.returnValues.age;
-          party = val.returnValues.party;
-          experince = val.returnValues.experince;
-          var voteCount = val.returnValues.voteCount;
+                var candidateId = val.returnValues.id;
+                name = val.returnValues.name;
+                age = val.returnValues.age;
+                party = val.returnValues.party;
+                experince = val.returnValues.experince;
+                var voteCount = val.returnValues.voteCount;
 
-          cName.push(name);
-          cAge.push(age);
-          cExprience.push(experince);
-          cParty.push(party);
+                cName.push(name);
+                cAge.push(age);
+                cExprience.push(experince);
+                cParty.push(party);
 
-          candidateSelect.innerHTML += `<option value=${candidateId}> ${name}</option>`;
+                candidateSelect.innerHTML += `<option value=${candidateId}> ${name}</option>`;
 
-          return <div></div>;
-        });
-        // console.log(res);
+                return <div></div>;
+              });
+              // console.log(res);
+            });
+        } else {
+          showCandidate.innerHTML = `<h2>Wait for the Voting Phase ✌</h2>`;
+        }
       });
+
+    console.log(phase);
 
     candidateSelect.addEventListener("change", () => {
       var cid = candidateSelect.options[candidateSelect.selectedIndex].value;
@@ -111,8 +125,7 @@ class CandidateDetails extends Component {
       console.log(cName[cid - 1]);
       // <img src="../../../assets/candidate.jpg" alt="User image" class="card__image" />
 
-
-      showCandidate.innerHTML = `<main class="container">
+      showCandidate.innerHTML = `<main class="cand-container">
       <div class="card">
 
 
@@ -139,8 +152,6 @@ class CandidateDetails extends Component {
         </div>
       </div>
     </main>`;
-
-    
 
       var btns = document.getElementById("vote-btn");
       console.log(btns);
@@ -183,7 +194,7 @@ class CandidateDetails extends Component {
       pd();
 
       console.log("pkfpefpef");
-      
+
       // window.location.reload()
 
       // return <div>Loading Web3, accounts, and contract...</div>;
@@ -191,7 +202,6 @@ class CandidateDetails extends Component {
 
     return (
       <div className="cast-vote-page">
-      
         <UserSideBar />
         <h1>Cast Vote</h1>
 

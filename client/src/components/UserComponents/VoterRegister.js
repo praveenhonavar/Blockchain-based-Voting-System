@@ -104,7 +104,7 @@ function VoterRegister() {
 
       <div className="voter-register-form">
         <h1>Register Yourself</h1>
-        <form onSubmit={sendMail}>
+        <form onSubmit={sendMail} id="voter-reg-form">
           <input
             type="text"
             onChange={(e) => {

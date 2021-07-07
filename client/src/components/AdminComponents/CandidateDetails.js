@@ -17,6 +17,8 @@ var candId, vc;
 
 var dict = {};
 
+
+
 class CandidateDetails extends Component {
   state = {
     storageValue: 0,
@@ -214,7 +216,7 @@ class CandidateDetails extends Component {
     return (
       <div className="validate-voter-page">
         <AdminSideBar />
-        <h1>Candidate Details</h1>
+        <h1 className="cand-details">Candidate Details</h1>
 
         <table id="Transactions">
           <thead>

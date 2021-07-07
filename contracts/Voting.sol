@@ -90,14 +90,14 @@ contract Voting {
     }
     
     function castVote(uint cid, uint pid) public{
-        // require(voterMapping[msg.sender].registered);
-        // require(cid<=candidateId && cid>=0);
+        require(voterMapping[msg.sender].registered);
+        require(cid<=candidateId && cid>=0);
         require(pid==1);
         CandidateMapping[cid].voteCount+=1;
 
         emit Voted(CandidateMapping[cid].voteCount,msg.sender,cid);
         
-        // voterMapping[msg.sender].registered=false;
+        voterMapping[msg.sender].registered=false;
     }
      
 }

@@ -57,23 +57,41 @@ class ChangePhase extends Component {
     var changePhaseBtn = document.getElementById("change-phase-btn");
     console.log(contract.methods);
 
-    contract
-      .getPastEvents("PhaseChanged", {
-        fromBlock: "latest",
-        toBlock: "latest",
-      })
-      .then((val, err) => {
-        console.log("PPDDD", val);
-        if (val == "") {
-          console.log("fokokok");
-          phase=0
-        } else {
-          phaseField.innerHTML = val[0].returnValues.phase;
-          phase = val[0].returnValues.phaseId;
-          console.log("iddddddddddd", phase);
-        }
-        console.log("iddddddddddd", phase);
-      });
+    contract.methods.getPhaseId().call().then((val)=>{
+      console.log("phase id",val);
+      if(val==0){
+        phaseField.innerHTML = `Register Phase`
+      }
+
+      if(val==1){
+        phaseField.innerHTML = `Voting Phase`
+      }
+
+      if(val==2){
+        phaseField.innerHTML = `Results Phase`
+      }
+
+    })
+
+
+
+    // contract
+    //   .getPastEvents("PhaseChanged", {
+    //     fromBlock: "latest",
+    //     toBlock: "latest",
+    //   })
+    //   .then((val, err) => {
+    //     console.log("PPDDD", val);
+    //     if (val == "") {
+    //       console.log("fokokok");
+    //       phase=0
+    //     } else {
+    //       phaseField.innerHTML = val[0].returnValues.phase;
+    //       phase = val[0].returnValues.phaseId;
+    //       console.log("iddddddddddd", phase);
+    //     }
+    //     console.log("iddddddddddd", phase);
+    //   });
 
  
 
@@ -95,12 +113,12 @@ class ChangePhase extends Component {
               .then((res) => {
                 // phase = 0;
                 console.log("Register phase", res);
-                // pd();
+                pd();
 
-                phaseField.innerHTML = `<h1>Register Phase</h1>`
+                // phaseField.innerHTML = `<h1>Register Phase</h1>`
               });
           } else {
-            phaseField.innerHTML = val[0].returnValues.phase;
+            // phaseField.innerHTML = val[0].returnValues.phase;
             phase = val[0].returnValues.phaseId;
 
             console.log("iddddddddddd", phase);
@@ -113,9 +131,9 @@ class ChangePhase extends Component {
                 .then((res) => {
                   // phase = 1;
                   console.log("Vote phase", res);
-                  // pd();
+                  pd();
 
-                  phaseField.innerHTML = `<h1>Voting Phase</h1>`
+                  // phaseField.innerHTML = `<h1>Voting Phase</h1>`
                 });
             } else if (phase == 1) {
               contract.methods
@@ -126,9 +144,9 @@ class ChangePhase extends Component {
                 .then((res) => {
                   // phase = 2;
                   console.log("Results phase", res);
-                  // pd();
+                  pd();
 
-                  phaseField.innerHTML = `<h1>Results Phase</h1>`
+                  // phaseField.innerHTML = `<h1>Results Phase</h1>`
                 });
             } else {
               contract.methods
@@ -139,9 +157,9 @@ class ChangePhase extends Component {
                 .then((res) => {
                   // phase = 0;
                   console.log("Register phase", res);
-                  // pd();
+                  pd();
 
-                  phaseField.innerHTML = `<h1>Register Phase</h1>`
+                  // phaseField.innerHTML = `<h1>Register Phase</h1>`
                 });
             }
           }
