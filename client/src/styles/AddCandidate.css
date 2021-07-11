@@ -1,7 +1,15 @@
 .add-field-form{
-  background-color: #d9d9d9;
+  background-color: #fff;
+  /* background-color: #F5F5F5; */
   height: 100vh;
 }
+
+.add-field-form h1{
+  position: absolute;
+  margin-left: 18em;
+  margin-top: 2em;
+}
+
 
 .add-canidate-field {
   position: absolute;
@@ -13,7 +21,7 @@
   height: 50vh;
   width: 50vw;
   margin-left:25em;
-  margin-top: 6em;
+  margin-top: 9em;
 }
 
 .add-canidate-field input {
@@ -37,19 +45,22 @@
 
 #add-candidate-btn {
   /* background: linear-gradient(#0f2027, #203a43, #2c5364);
-  color: #d9d9d9;
+  color: ##F5F5F5;
   font-weight: 900; */
-  width: 40.5em;
+  width: 44.5em;
   padding: 10px;
   border-radius: 5px;
   border: none;
   outline: none;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
+  color: black;
+  font-weight: bolder;
+
 }
 
 #add-candidate-btn:hover {
-  background: linear-gradient(#0f2027, #203a43, #2c5364);
-  color: #d9d9d9;
+  /* background: linear-gradient(#0f2027, #203a43, #2c5364); */
+  color: #F5F5F5;
   font-weight: 900;
 }

@@ -55,25 +55,31 @@ class ChangePhase extends Component {
 
     var phaseField = document.getElementById("phase-field");
     var changePhaseBtn = document.getElementById("change-phase-btn");
+
+    var additionalDetails = document.getElementById("additional-details");
+
     console.log(contract.methods);
 
-    contract.methods.getPhaseId().call().then((val)=>{
-      console.log("phase id",val);
-      if(val==0){
-        phaseField.innerHTML = `Register Phase`
-      }
+    contract.methods
+      .getPhaseId()
+      .call()
+      .then((val) => {
+        console.log("phase id", val);
+        if (val == 0) {
+          phaseField.innerHTML = `Current Phase is Registeration Phase 📝`;
+          additionalDetails.innerHTML += `<h6>Voters can send Registeration Requests Now</h6>`;
+        }
 
-      if(val==1){
-        phaseField.innerHTML = `Voting Phase`
-      }
+        if (val == 1) {
+          phaseField.innerHTML = `<div id="voter-head">Current Phase is Voting Phase ✔</div>`;
+          additionalDetails.innerHTML += `<h6 id="voters">Voters can Vote Now </h6>`;
+        }
 
-      if(val==2){
-        phaseField.innerHTML = `Results Phase`
-      }
-
-    })
-
-
+        if (val == 2) {
+          phaseField.innerHTML = `<div id="phase-head">Current Phase is Results Phase 💯</div>`;
+          additionalDetails.innerHTML += `<h6 id="voter-result">Voters can View the Results Now </h6>`;
+        }
+      });
 
     // contract
     //   .getPastEvents("PhaseChanged", {
@@ -92,8 +98,6 @@ class ChangePhase extends Component {
     //     }
     //     console.log("iddddddddddd", phase);
     //   });
-
- 
 
     changePhaseBtn.addEventListener("click", () => {
       contract
@@ -180,11 +184,11 @@ class ChangePhase extends Component {
     return (
       <div className="add-field-form">
         <AdminSideBar />
-        <h1 id="phase-field">
+        <h1 id="phase-field"></h1>
 
-        </h1>
         <button id="change-phase-btn">Change</button>
 
+        <h1 id="additional-details"> </h1>
       </div>
     );
   }

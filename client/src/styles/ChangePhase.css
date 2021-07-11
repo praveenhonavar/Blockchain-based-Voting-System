@@ -1,15 +1,43 @@
 #phase-field{
     position: absolute;
-    margin-left: 16em;
-    margin-top: 2em;
+    margin-left: 13em;
+    margin-top: 3em;
 }
 
 #change-phase-btn{
-    margin-top: 10em;
+    margin-top: 18em;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     outline: none;
-    width: 10em;
+    width: 25em;
     border: none;
+    color: black;
+}
+
+#change-phase-btn:hover{
+    
+    color: #fff;
+}
+
+
+
+#additional-details{
+    margin-left: 14.5em;
+}
+
+#voters{
+    margin-left: 5em;
+}
+
+#voter-head{
+    margin-left: 1em;
+}
+
+#voter-result{
+    margin-left: 2em;
+}
+
+#phase-head{
+    margin-left: 1em;
 }

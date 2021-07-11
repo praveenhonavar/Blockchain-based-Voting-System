@@ -8,6 +8,8 @@ import "../../styles/CastVote.css";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
+import cand from "./candidate.jpg";
+
 const pd = () => {
   console.log("oooooooooooooooooooooooo");
   if (!window.location.hash) {
@@ -71,6 +73,7 @@ class CandidateDetails extends Component {
     // var candidateCardPlace = document.getElementById("candidate-card-place");
     var candidateSelect = document.getElementById("candidate-select-tab");
     var showCandidate = document.getElementById("show-candidate");
+    var currentPhase = document.getElementById("current-phase");
 
     contract.methods
       .getPhaseId()
@@ -102,12 +105,14 @@ class CandidateDetails extends Component {
 
                 candidateSelect.innerHTML += `<option value=${candidateId}> ${name}</option>`;
 
-                return <div></div>;
+                // return <div></div>;
               });
               // console.log(res);
             });
         } else {
-          showCandidate.innerHTML = `<h2>Wait for the Voting Phase ✌</h2>`;
+          // candidateSelect.style.display='none';
+          // showCandidate.innerHTML = `<h2>Wait for the Voting Phase ✌</h2>`;
+          currentPhase.innerHTML = `<h2>Please Wait for the Voting Phase ✌</h2>`;
         }
       });
 
@@ -123,16 +128,22 @@ class CandidateDetails extends Component {
       var candExperience = cExprience[cid - 1];
 
       console.log(cName[cid - 1]);
-      // <img src="../../../assets/candidate.jpg" alt="User image" class="card__image" />
+      // <img src="./candidate.jpg" alt="User image" class="card__image" />
+
 
       showCandidate.innerHTML = `<main class="cand-container">
       <div class="card">
 
 
+
         <div class="card__text">
           <h2>${candName}</h2>
-          
         </div>
+
+        <img src=${cand} class="card__image"></img>
+
+      
+
         <ul class="card__info">
           <li>
             <span class="card__info__stats">${candAge}</span>
@@ -208,6 +219,8 @@ class CandidateDetails extends Component {
         <select id="candidate-select-tab">
           <option>Select Candidate</option>
         </select>
+
+        <div id="current-phase"></div>
 
         <div id="show-candidate"></div>
       </div>

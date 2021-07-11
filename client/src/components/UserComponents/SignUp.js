@@ -80,7 +80,7 @@ function SignUp() {
   return (
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <h1>Sign Up</h1>
+        <h1 id="sign-up-head">Sign Up</h1>
         <form>
           <div class="social-container">
             <a href="#" class="social">

@@ -26,6 +26,7 @@ let voters = {
 let voterIdKey = Object.keys(voters);
 
 var ch;
+var c=1;
 
 console.log(voterIdKey);
 
@@ -124,14 +125,16 @@ class AddVoter extends Component {
       <div className="validate-voter-page">
         <AdminSideBar />
         <div className="pending-register">
-          <h2>Pending Registration</h2>
-          {voterIdKey.map((val) => {
-            console.log("regVot", localStorage.getItem(val));
-            return <h4>{localStorage.getItem(val)}</h4>;
-          })}
+          <h1>Validate these Voters</h1>
+          
+        
         </div>
 
         <div className="validate-vote-form">
+        {voterIdKey.map((val) => {
+          console.log("regVot", localStorage.getItem(val));
+          return <h4>{localStorage.getItem(val)}</h4>;
+        })}
           <input type="text" id="eth-address-input" placeholder="Ethereum Address"></input>
           <button id="add-voter">Add Voter</button>
         </div>

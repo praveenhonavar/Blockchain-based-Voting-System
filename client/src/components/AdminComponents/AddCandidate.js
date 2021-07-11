@@ -76,6 +76,7 @@ class AddCandidate extends Component {
             showConfirmButton: false,
             timer: 4000,
           });
+     
         });
     });
   };
@@ -90,9 +91,9 @@ class AddCandidate extends Component {
     return (
       <div className="add-field-form">
         <AdminSideBar />
-
+        <h1>Add Candidate</h1>
         <div className="add-canidate-field">
-          <h1>Add Candidate</h1>
+          
           <input
             type="text"
             id="name-input"

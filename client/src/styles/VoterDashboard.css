@@ -1,5 +1,5 @@
 .voter-dashboard{
-    background-color: #d9d9d9;
+    background-color: #fff;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -7,5 +7,53 @@
   }
 
 .user-dashboard-header{
-  
+  margin-top: 2em;
+}
+
+#dashboard-items{
+  margin-top: 5em;
+  margin-left:10em;
+  background-color: #f5f5f5;
+  width: 85vw;
+  height: 160vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 50px;
+
+}
+
+#db-items{
+  /* background-color: tomato; */
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+
+}
+
+#db-items h4{
+  text-align: left;
+  margin-left: 3em;
+}
+
+#db-items-combined{
+  display: flex;
+  flex-direction: row;
+  /* background-color: tomato; */
+  align-items: center;
+  /* padding: 5em; */
+}
+
+#db-img{
+  width: 10em;
+  height: 10em;
+  /* background-color: tomato; */
+}
+
+#vote-info{
+  /* background-color: tomato; */
+  width: 50vw;
+  text-align: justify;
+  font-weight: 800;
 }

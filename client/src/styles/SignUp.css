@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap"); */
 
 :root {
   --main-color: #6dd5ed;
@@ -25,10 +25,11 @@ body {
   margin: 1rem 0;
 } */
 
-h1 {
+/* h1 {
+  position: absolute;
   font-weight: bold;
-  /* margin: 0; */
-}
+  margin: 5px;
+} */
 
 p {
   font-size: 14px;
@@ -67,12 +68,13 @@ a {
 button {
   cursor: pointer;
   border-radius: 20px;
+  width: 20em;
   border: 1px solid var(--main-color);
   background: var(--main-color);
   color: #fff;
   font-size: 12px;
   font-weight: bold;
-  padding: 12px 45px;
+  padding: 15px 46px;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-out;
@@ -112,13 +114,24 @@ form {
 }
 
 input {
-  background-color: #eee;
+  /* background-color: #d9d9d9; */
+  /* background-color: #fff; */
+  background-color: #F5F5F5;
+
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
   font-family: inherit;
 }
+
+#sign-up-head{
+  position:absolute;
+  margin-top: 1em;
+  margin-left: 4em;
+}
+
+
 
 .container {
   background-color: #fff;

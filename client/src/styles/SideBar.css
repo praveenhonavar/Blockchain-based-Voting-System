@@ -8,8 +8,11 @@ body {
 .side-nav-bar {
   position: absolute;
   width: 250px;
-  height: 100vh;
-  background:linear-gradient(#0F2027,#203A43,#2C5364);
+  height: 110vh;
+  background:linear-gradient(#2193b0,#6dd5ed);
+
+  /* background:linear-gradient(#0F2027,#203A43,#2C5364); */
+
 }
 
 .nav-items {
@@ -18,9 +21,11 @@ body {
   align-items: center;
   flex-direction: row;
   cursor: pointer;
+  color: #171e2e;
   /* color: rgb(22, 22, 22); */
-  color: #d9d9d9;
-  margin: 8px;
+  /* color: #F5F5F5; */
+  /* margin: 8px; */
+  margin-top: 2em;
 }
 
 a {
@@ -31,3 +36,10 @@ a {
   margin-right: 15px;
 }
 
+.nav-items h4{
+   font-size: larger;
+}
+
+.nav-items :hover{
+  color: black;
+}

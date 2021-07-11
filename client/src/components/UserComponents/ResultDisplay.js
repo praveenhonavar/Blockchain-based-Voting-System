@@ -124,7 +124,7 @@ class ResultDisplay extends Component {
           </tbody>`;
           }
           else{
-            transactions.innerHTML = `<h2>Wait for the Result Phase 🕝</h2>`
+            transactions.innerHTML = `<h2>Please Wait for the Result Phase 🕝</h2>`
           }
 
           // console.log("Name -->", name);
@@ -147,7 +147,7 @@ class ResultDisplay extends Component {
       <div className="validate-voter-page">
     
         <AdminSideBar />
-        <h1 className="cand-details">Candidate Details</h1>
+        <h1 className="cand-details">Results</h1>
 
           <table id="Transactions">
             <thead>

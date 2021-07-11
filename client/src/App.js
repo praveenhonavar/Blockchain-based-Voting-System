@@ -17,6 +17,8 @@ import CastVote from "./components/UserComponents/CastVote";
 import ChangePhase from "./components/AdminComponents/ChangePhase";
 import ResultDisplay from "./components/UserComponents/ResultDisplay";
 import SignUp from "./components/UserComponents/SignUp";
+import AdminLogin from "./components/AdminComponents/AdminLogin";
+import LandingPage from "./components/CommonComponents/LandingPage";
 
 class App extends Component {
   //   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -72,7 +74,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/" component={HomePage}></Route>
+            <Route exact path="/" component={LandingPage}></Route>
             <Route path="/adminDashboard" component={AdminDashboard}></Route>
             <Route path="/userDashboard" component={UserDashboard}></Route>
             <Route path="/voterRegister" component={VoterRegister}></Route>
@@ -83,6 +85,8 @@ class App extends Component {
             <Route path="/changePhase" component={ChangePhase}></Route>
             <Route path="/resultDisplay" component={ResultDisplay}></Route>
             <Route path="/signUp" component={SignUp}></Route>
+            <Route path="/adminLogin" component={AdminLogin}></Route>
+            <Route path="/homePage" component={HomePage}></Route>
 
           </Switch>
         </Router>

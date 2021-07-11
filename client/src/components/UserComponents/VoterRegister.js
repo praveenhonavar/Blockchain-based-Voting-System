@@ -8,6 +8,7 @@ let voters = {
   v1: {
     mail: "blockbook1109@gmail.com",
     name: "pd",
+    
   },
   v2: {
     mail: "spktech606@gmail.com",
@@ -18,6 +19,7 @@ let voters = {
     mail: "abcd@gmail.com",
     name: "pd",
   },
+
 };
 
 console.log(Object.keys(voters));
@@ -70,6 +72,7 @@ function VoterRegister() {
       .then((res) => {
         console.log(res);
       });
+
     setFlag(0);
   }
 
@@ -103,7 +106,8 @@ function VoterRegister() {
       <UserSideBar />
 
       <div className="voter-register-form">
-        <h1>Register Yourself</h1>
+        <h1>Register Yourself for Voting</h1>
+
         <form onSubmit={sendMail} id="voter-reg-form">
           <input
             type="text"

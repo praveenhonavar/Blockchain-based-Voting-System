@@ -11,7 +11,7 @@ function AdminSideBar() {
 
   return (
     <div className="side-nav-bar">
-      <Link to="/">
+      <Link to="/adminDashboard">
         <div className="nav-items">
           <i class="fas fa-home fa-1x"></i>
           <h4>Home</h4>
@@ -46,10 +46,12 @@ function AdminSideBar() {
         </div>
       </Link>
 
-      <div className="nav-items">
-        <i class="fas fa-sign-out-alt fa-1x"></i>
-        <h4>Logout</h4>
-      </div>
+      <Link to="/">
+        <div className="nav-items">
+          <i class="fas fa-sign-out-alt fa-1x"></i>
+          <h4>Logout</h4>
+        </div>
+      </Link>
     </div>
   );
 }
