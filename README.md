@@ -75,6 +75,14 @@ Voter Dashboard
 
 ![LP-1](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(351).png)
 
+Admin Dashboard
+
+![LP-2](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(356).png)
+
+Voter Self Registration
+
+![LP-5](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(357).png)
+
 Candidate Addition Page
 
 ![LP-3](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(352).png)
