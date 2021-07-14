@@ -69,4 +69,29 @@ npm install -f
 npm run start
 ```
 
+# Screenshots
+
+Voter Dashboard
+
+![LP-1](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(351).png)
+
+Candidate Addition Page
+
+![LP-3](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(352).png)
+
+Election Phase Change
+
+![dashboard](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(353).png)
+
+Vote Cast Page
+
+![vote-page](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(354).png)
+
+
+
+
+
+
+
+
 
