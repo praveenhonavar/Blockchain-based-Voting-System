@@ -71,6 +71,10 @@ npm run start
 
 # Screenshots
 
+Home Page
+
+![HP](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(358).png)
+
 Voter Dashboard
 
 ![LP-1](https://github.com/praveenhonavar/Blockchain-based-Voting-System/blob/master/client/assets/Screenshot%20(351).png)
